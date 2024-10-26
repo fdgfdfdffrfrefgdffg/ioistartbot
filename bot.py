@@ -1,36 +1,42 @@
+import logging
 from aiogram import Bot, Dispatcher
+from aiogram.types import Update
+from flask import Flask, request, jsonify
 from config import BOT_TOKEN
 import message, callback
 from sqldata import default, close_db
-from aiogram import Bot, Dispatcher
-from aiogram.types import Update
-from aiogram.webhook.aiohttp_server import SimpleRequestHandler
-from flask import Flask, request, jsonify
 
-# Bot token va webhook URL (webhook uchun https kerak)
-WEBHOOK_URL = "https://ioistart.pythonanywhere.com/"
+# Webhook URL'ni to‘g‘ri yo‘nalish bilan sozlash
+WEBHOOK_URL = "https://ioistart.pythonanywhere.com/webhook"
 
+# Bot va dispatcher obyektlarini yaratish
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
+# Flask serverini yaratish
 app = Flask(__name__)
 
+# Webhook uchun endpoint
 @app.route("/webhook", methods=["POST"])
-async def handle_webhook():
-    update = Update(**await request.json)
-    await dp.feed_update(bot, update)
+def handle_webhook():
+    json_data = request.get_json()
+    update = Update(**json_data)
+    dp.feed_update(bot, update)
     return jsonify({"status": "ok"})
 
+# Webhook va botni sozlash uchun on_startup funksiyasi
 async def on_startup():
     await bot.set_webhook(WEBHOOK_URL)
 
 if __name__ == "__main__":
+    # DB funksiyalarini boshlash va tozalash
     default()
     dp.include_router(message.router)
     dp.include_router(callback.router)
     dp.startup.register(on_startup)
-    SimpleRequestHandler(dp, bot).register(app, "/webhook")
-    app.run(host="0.0.0.0", port=8443)
+    
+    # Flask serverni ishga tushirish
+    from werkzeug.serving import run_simple
+    run_simple("0.0.0.0", 8443, app)
+    
     close_db()
-
-
