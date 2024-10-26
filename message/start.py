@@ -91,7 +91,7 @@ Maktab: {maktab}
 Sinf: {sinfi}
 """
     )
-    await message.answer("✅ Siz ro'yhatdan o'tdingiz!", reply_markup=ReplyKeyboardRemove())
+    await message.answer("✅ Siz ro'yhatdan o'tdingiz!\n\nGuruh havolasi:\nhttps://t.me/+zCFMvEknhew4MWI6", reply_markup=ReplyKeyboardRemove())
     await state.clear()
 
 async def get_pupil_info_answer(message: Message, state: FSMContext, bot: Bot):
@@ -132,5 +132,5 @@ Maktab: {maktab}
 Info: {pupil_info}
 """
     )
-    await message.answer("✅ Siz ro'yhatdan o'tdingiz!", reply_markup=ReplyKeyboardRemove())
+    await message.answer("✅ Siz ro'yhatdan o'tdingiz!\n\nGuruh havolasi:\nhttps://t.me/+zCFMvEknhew4MWI6", reply_markup=ReplyKeyboardRemove())
     await state.clear()
