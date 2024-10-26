@@ -9,7 +9,7 @@ from flask import Flask, request, jsonify
 
 # Bot token va webhook URL (webhook uchun https kerak)
 BOT_TOKEN = "YOUR_BOT_TOKEN"
-WEBHOOK_URL = "https://your-domain.com/webhook"
+WEBHOOK_URL = "https://ioistart.pythonanywhere.com/"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
