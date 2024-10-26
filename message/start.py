@@ -53,7 +53,7 @@ async def get_job_answer(message: Message, state: FSMContext):
             await message.answer("O'quvchingiz haqida ma'lumot yozing.\n\nNechanchi sinfligi va ism-familyasi", reply_markup=ReplyKeyboardRemove())
             await state.set_state(FirstCupdownStates.pupil_info)
 
-async def get_pupil_class_answer(message: Message, state: FSMContext):
+async def get_pupil_class_answer(message: Message, state: FSMContext, bot: Bot):
     context = await state.get_data()
     ism = context.get("firstname")
     familya = context.get("lastname")
@@ -76,11 +76,25 @@ async def get_pupil_class_answer(message: Message, state: FSMContext):
         maktab,
         sinfi
     )
-  
+    await bot.send_message(
+        chat_id=5165396993,
+        text=f"""
+🆕 YANGI O"QUVCHI:
+
+ID: {message.from_user.id}
+Ism: {ism}
+Familya: {familya}
+Telefon: {telefon}
+Viloyat: {viloyat}
+tuman: {tuman}
+Maktab: {maktab}
+Sinf: {sinfi}
+"""
+    )
     await message.answer("✅ Siz ro'yhatdan o'tdingiz!", reply_markup=ReplyKeyboardRemove())
     await state.clear()
 
-async def get_pupil_info_answer(message: Message, state: FSMContext):
+async def get_pupil_info_answer(message: Message, state: FSMContext, bot: Bot):
     context = await state.get_data()
     ism = context.get("firstname")
     familya = context.get("lastname")
@@ -102,6 +116,21 @@ async def get_pupil_info_answer(message: Message, state: FSMContext):
         tuman,
         maktab,
         pupil_info
+    )
+    await bot.send_message(
+        chat_id=5165396993,
+        text=f"""
+🆕 YANGI O"QITUVCHI:
+
+ID: {message.from_user.id}
+Ism: {ism}
+Familya: {familya}
+Telefon: {telefon}
+Viloyat: {viloyat}
+tuman: {tuman}
+Maktab: {maktab}
+Info: {pupil_info}
+"""
     )
     await message.answer("✅ Siz ro'yhatdan o'tdingiz!", reply_markup=ReplyKeyboardRemove())
     await state.clear()
