@@ -4,7 +4,6 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 district_path = os.path.join(base_dir, 'districts.json')
 regions_path = os.path.join(base_dir, 'regions.json')
 def get_districts(selected_region_id):
-    print("\n\n\n\n\n\n", regions_path, "\n\n\n\n\n\n\n")
     with open(district_path, 'r', encoding='cp1251') as f:
         districts = json.load(f)
     with open(regions_path, 'r', encoding='cp1251') as f:
