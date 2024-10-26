@@ -1,4 +1,5 @@
 import logging
+import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.types import Update
 from flask import Flask, request, jsonify
@@ -21,7 +22,7 @@ app = Flask(__name__)
 def handle_webhook():
     json_data = request.get_json()
     update = Update(**json_data)
-    dp.feed_update(bot, update)
+    asyncio.run(dp.feed_update(bot, update))  # Asinxron funksiyani sinxron tarzda bajarish
     return jsonify({"status": "ok"})
 
 # Webhook va botni sozlash uchun on_startup funksiyasi
@@ -34,7 +35,6 @@ if __name__ == "__main__":
     default()
     dp.include_router(message.router)
     dp.include_router(callback.router)
-    dp.startup.register(on_startup)
     
     # Flask serverni ishga tushirish
     from werkzeug.serving import run_simple
