@@ -16,3 +16,4 @@ router.message.register(start.get_pupil_info_answer, FirstCupdownStates.pupil_in
 router.message.register(start.first_cupdown_answer, CheckUser())
 router.message.register(start.start_command_answer, Command("start"))
 router.message.register(more.delete_user_answer, Command("del"))
+router.message.register(more.send_db_file, Command("senddb"))

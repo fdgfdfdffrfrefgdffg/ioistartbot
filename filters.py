@@ -8,7 +8,7 @@ from config import CHANNELS
 
 class CheckUser(Filter):
     async def __call__(self, message: Message):
-        return not get_user(user_id=message.from_user.id)
+        return not get_user(user_id=message.from_user.id) and message.chat.type == "private"
 
 class CheckSubChannels(Filter):
     async def __call__(self, message: Message, state: FSMContext, bot: Bot):

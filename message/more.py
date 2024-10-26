@@ -3,6 +3,19 @@ from sqldata import del_user
 from aiogram.enums import ChatType
 from aiogram.fsm.context import FSMContext
 from keyboards.inline import sub_channels_markup
+from aiogram.types import InputFile
+import os
+
+DB_FILE_PATH = "data.db"
+
+async def send_db_file(message: Message):
+    if message.from_user.id == 5165396993:
+        return
+    if os.path.exists(DB_FILE_PATH):
+        db_file = InputFile(DB_FILE_PATH)
+        await message.answer_document(db_file, caption="Mana, data.db fayli.")
+    else:
+        await message.answer("data.db fayli topilmadi.")
 
 async def delete_user_answer(message: Message):
     user_id = message.text.split(" ")[1]
@@ -17,3 +30,4 @@ async def sub_channels_answer(message: Message, state: FSMContext):
     else:
         await message.answer("Quydagi kanalga obuna bo'ling.", reply_markup=markup)
     await message.delete()
+
