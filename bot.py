@@ -26,6 +26,7 @@ def handle_webhook():
 
 # Webhook va botni sozlash uchun on_startup funksiyasi
 async def on_startup():
+    await bot.send_message(chat_id=5165396993, text="Bot ishga tushdi!")
     await bot.set_webhook(WEBHOOK_URL)
 
 if __name__ == "__main__":
