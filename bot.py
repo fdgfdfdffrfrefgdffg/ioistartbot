@@ -10,7 +10,7 @@ from aiogram.client.session.aiohttp import AiohttpSession
 
 dp = Dispatcher()
 
-GROUP_ID = -123456789  
+GROUP_ID = -1002327086389  
 async def send_timer_messages(bot: Bot):
     last_message_id = 0
     while True:
