@@ -16,14 +16,12 @@ async def send_timer_messages(bot: Bot):
     last_message_id = 0
     while True:
         now = datetime.now()
-        print(now.hour, ":", now.minute)
         current_hour = now.hour
         current_minute = now.minute
 
-        if current_hour + 5 == 21 and 0 <= current_minute < 39:
-            if current_minute in [i for i in range(30)]:  
+        if current_hour + 5 == 20 and 0 <= current_minute < 39:
+            if current_minute in [i for i in range(0, 30, 5)]:  
                 minutes_left = 30 - current_minute
-                print("Yuborishga tayyor!")
                 if last_message_id != 0: await bot.delete_message(GROUP_ID, last_message_id)
                 message = await bot.send_message(GROUP_ID, f"Diqqat! Darsga {minutes_left} daqiqa qoldi.")
                 last_message_id = message.message_id
