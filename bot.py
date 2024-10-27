@@ -36,7 +36,7 @@ async def main():
     dp.include_router(callback.router)
     
     asyncio.create_task(send_timer_messages(bot))
-
+    await dp.start_polling(bot)
     close_db()
 
 run(main=main())
