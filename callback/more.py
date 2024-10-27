@@ -8,6 +8,10 @@ from sqldata import get_user
 from states import FirstCupdownStates
 
 async def sub_channels_answer(call: CallbackQuery, state: FSMContext, bot: Bot):
+    user_id = call.data.split(":")[1]
+    if int(user_id) != call.from_user.id:
+        await call.answer("❗ Bu tugma siz uchun emas!", show_alert=True)
+        return
     not_sub_channels = []
     for channel in CHANNELS:
         member = await bot.get_chat_member(chat_id=channel, user_id=call.from_user.id)
@@ -15,7 +19,7 @@ async def sub_channels_answer(call: CallbackQuery, state: FSMContext, bot: Bot):
             continue
         not_sub_channels.append((channel, CHANNELS[channel]))
     if not_sub_channels:
-        markup = sub_channels_markup(not_sub_channels)
+        markup = sub_channels_markup(not_sub_channels, call.from_user.id)
         if len(not_sub_channels) > 1:
             await call.message.answer("Quydagi kanallarga obuna bo'ling.", reply_markup=markup)
         else:

@@ -19,7 +19,7 @@ async def delete_user_answer(message: Message):
 
 async def sub_channels_answer(message: Message, state: FSMContext):
     context = await state.get_data()
-    markup = sub_channels_markup(channels=context.get("channels"))
+    markup = sub_channels_markup(channels=context.get("channels"), user_id=message.from_user.id)
     if len(context.get("channels")) > 1:
         await message.answer("Quydagi kanallarga obuna bo'ling.", reply_markup=markup)
     else:

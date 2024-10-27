@@ -15,10 +15,10 @@ def districts_button(region_id):
     markup.adjust(1)
     return markup.as_markup()
 
-def sub_channels_markup(channels):
+def sub_channels_markup(channels, user_id):
     markup = InlineKeyboardBuilder()
     for channel in channels:
         markup.button(text="Kanalga kirish", url=channel[1])
-    markup.button(text="✅ Tekshirish", callback_data="checksub")
+    markup.button(text="✅ Tekshirish", callback_data=f"checksu:{user_id}")
     markup.adjust(1)
     return markup.as_markup()
