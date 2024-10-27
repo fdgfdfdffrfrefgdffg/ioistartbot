@@ -19,6 +19,6 @@ def sub_channels_markup(channels, user_id):
     markup = InlineKeyboardBuilder()
     for channel in channels:
         markup.button(text="Kanalga kirish", url=channel[1])
-    markup.button(text="✅ Tekshirish", callback_data=f"checksu:{user_id}")
+    markup.button(text="✅ Tekshirish", callback_data=f"checksub:{user_id}")
     markup.adjust(1)
     return markup.as_markup()
