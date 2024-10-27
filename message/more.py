@@ -26,3 +26,5 @@ async def sub_channels_answer(message: Message, state: FSMContext):
         await message.answer("Quydagi kanalga obuna bo'ling.", reply_markup=markup)
     await message.delete()
 
+async def get_chat_id(message: Message):
+    await message.answer(f"Chat ID: {message.chat.id}")
