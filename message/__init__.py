@@ -1,5 +1,5 @@
 from aiogram import Router, F
-from . import start, more
+from . import start, more, tasks
 from filters import CheckUser, CheckSubChannels
 from aiogram.filters import Command
 from states import FirstCupdownStates
@@ -14,6 +14,7 @@ router.message.register(start.get_job_answer, FirstCupdownStates.job)
 router.message.register(start.get_pupil_class_answer, FirstCupdownStates.pupil_class)
 router.message.register(start.get_pupil_info_answer, FirstCupdownStates.pupil_info)
 router.message.register(start.first_cupdown_answer, CheckUser())
+router.message.register(tasks.send_task_details, Command("tasks"))
 router.message.register(start.start_command_answer, Command("start"))
 router.message.register(more.delete_user_answer, Command("del"))
 router.message.register(more.send_db_file, F.text == "/senddb")
