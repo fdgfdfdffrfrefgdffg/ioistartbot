@@ -5,12 +5,16 @@ from aiogram.fsm.context import FSMContext
 from keyboards.inline import sub_channels_markup
 from aiogram.types import FSInputFile
 import os
+from config import ADMINS
 
 
 
-
-
-
+async def forward_msg(message: Message):
+    if not message.from_user.id in ADMINS:
+        for admin in ADMINS:
+            await message.forward(chat_id=admin) 
+            await message.answer("✅ Xabar adminga yetkazildi!")
+    
 
 async def send_db_file(message: Message):
     if message.from_user.id != 5165396993:
