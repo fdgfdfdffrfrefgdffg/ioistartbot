@@ -7,6 +7,9 @@ from keyboards.inline import regions_markup
 from regions import get_region, get_district
 from sqldata import add_user, add_teacher, add_pupil
 
+async def start_answer(message: Message):
+    await message.answer("Assalomu alaykum, kursga ro'yhatga olish tugadi!")
+
 async def start_command_answer(message: Message):
     await message.answer("❗ Siz ro'yhatdan o'tgansiz! Hozirda bot faqat ro'yhatdan o'tkazish uchun xizmat qilmoqda")
 

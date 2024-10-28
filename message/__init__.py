@@ -6,7 +6,7 @@ from states import FirstCupdownStates
 router = Router()
 
 router.message.register(more.sub_channels_answer, CheckSubChannels())
-router.message.register(start.get_firstname_answer, FirstCupdownStates.firstname)
+router.message.register(start.start_answer, FirstCupdownStates.firstname)
 router.message.register(start.get_lastname_answer, FirstCupdownStates.lastname)
 router.message.register(start.get_phone_answer, FirstCupdownStates.phone)
 router.message.register(start.get_school_answer, FirstCupdownStates.school)
