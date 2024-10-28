@@ -7,6 +7,11 @@ for region in get_regions():
 regions_markup.adjust(1)
 regions_markup = regions_markup.as_markup()
 
+async def task_button(task_url):
+    markup = InlineKeyboardBuilder()
+    markup.button(text="Web saytga o'tish", url=task_url)
+    return markup.as_markup()
+
 def districts_button(region_id):
     markup = InlineKeyboardBuilder()
     districts = get_districts(region_id)

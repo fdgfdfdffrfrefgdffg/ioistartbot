@@ -1,5 +1,6 @@
 import aiohttp
 from aiogram.types import Message
+from keyboards.inline import task_button
 import re
 import html  
 
@@ -7,7 +8,7 @@ async def send_task_details(message: Message):
     task_num = message.text[7:]
     task_num = task_num.zfill(4)
     url = f"https://robocontest.uz/api/tasks/{task_num}"
-    
+    markup = task_button(url)
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             if response.status == 200:
@@ -28,9 +29,11 @@ async def send_task_details(message: Message):
                 if img_url:
                     await message.answer(
                         photo=img_url,
-                        caption=telegram_text
+                        caption=telegram_text,
+                        reply_markup=markup
                     )
                 else:
                     await message.answer(
-                        text=telegram_text
+                        text=telegram_text,
+                        reply_markup=markup
                     )
