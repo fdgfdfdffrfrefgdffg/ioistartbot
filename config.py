@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
+ADMINS = [2078068479, 5165396993]
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 CHANNELS = {
     -1001852240987: "https://t.me/+NZCAhlk1vIpjYmUy",
