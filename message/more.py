@@ -30,9 +30,9 @@ async def sub_channels_answer(message: Message, state: FSMContext):
     context = await state.get_data()
     markup = sub_channels_markup(channels=context.get("channels"), user_id=message.from_user.id)
     if len(context.get("channels")) > 1:
-        await message.message.answer(f"{message.from_user.mention_html('Siz')} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup, parse_mode="HTML")
+        await message.answer(f"{message.from_user.mention_html('Siz')} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup, parse_mode="HTML")
     else:
-        await message.message.answer(f"{message.from_user.mention_html('Siz')} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup, parse_mode="HTML")
+        await message.answer(f"{message.from_user.mention_html('Siz')} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup, parse_mode="HTML")
     await message.delete()
 
 async def get_chat_id(message: Message):
