@@ -21,9 +21,9 @@ async def sub_channels_answer(call: CallbackQuery, state: FSMContext, bot: Bot):
     if not_sub_channels:
         markup = sub_channels_markup(not_sub_channels, call.from_user.id)
         if len(not_sub_channels) > 1:
-            await call.message.answer(f"{call.from_user.mention_html("Siz")} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup)
+            await call.message.answer(f"{call.from_user.mention_html('Siz')} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup, parse_mode="HTML")
         else:
-            await call.message.answer(f"{call.from_user.mention_html("Siz")} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup)
+            await call.message.answer(f"{call.from_user.mention_html('Siz')} quydagi kanallarga obuna bo'lishingiz kerak.", reply_markup=markup, parse_mode="HTML")
         await call.answer()
         await call.message.delete()
     else:
